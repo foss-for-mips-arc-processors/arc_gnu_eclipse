@@ -148,16 +148,20 @@ public class ConfigurationWriter {
     setAttribute(LaunchConfigurationConstants.ATTR_DEBUGGER_EXTERNAL_TOOLS_ASHLING_PATH, value);
   }
 
-  public void setAshlingXmlPath(final String value) {
-    setAttribute(LaunchConfigurationConstants.ATTR_ASHLING_XML_PATH, value);
-  }
-
-  public void setAshlingTDescPath(final String value) {
-    setAttribute(LaunchConfigurationConstants.ATTR_ASHLING_TDESC_PATH, value);
-  }
-
   public void setAshlingJtagFrequency(final String value) {
     setAttribute(LaunchConfigurationConstants.ATTR_JTAG_FREQUENCY, value);
+  }
+
+  public void setAshlingDevice(final String value) {
+    setAttribute(LaunchConfigurationConstants.ATTR_ASHLING_DEVICE, value);
+  }
+
+  public void setAshlingProbeSerialNumber(final String value) {
+    setAttribute(LaunchConfigurationConstants.ATTR_ASHLING_PROBE_SERIAL_NUMBER, value);
+  }
+
+  public void setAshlingGdbServerArgs(final String value) {
+    setAttribute(LaunchConfigurationConstants.ATTR_ASHLING_GDBSERVER_ARGS, value);
   }
 
   public void setCustomGdbServerPath(final String value) {

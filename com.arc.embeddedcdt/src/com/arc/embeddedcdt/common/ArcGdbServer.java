@@ -12,7 +12,8 @@ package com.arc.embeddedcdt.common;
 
 public enum ArcGdbServer {
     JTAG_OPENOCD("JTAG via OpenOCD"),
-    JTAG_ASHLING("JTAG via Opella-XD"),
+    JTAG_ASHLING_OPELLAXD("JTAG via Ashling Opella-XD"),
+    JTAG_ASHLING_VITRAXS("JTAG via Ashling Vitra-XS"),
     NSIM("nSIM"),
     GENERIC_GDBSERVER("Connect to running GDB server"),
     CUSTOM_GDBSERVER("Custom GDB server");

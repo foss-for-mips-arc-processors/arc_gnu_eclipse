@@ -53,7 +53,8 @@ public class ArcDebugServicesFactory extends GdbDebugServicesFactory {
         switch (gdbServer) {
         case JTAG_OPENOCD:
             return new OpenOcdBackend(session, arg);
-        case JTAG_ASHLING:
+        case JTAG_ASHLING_OPELLAXD:
+        case JTAG_ASHLING_VITRAXS:
             return new AshlingBackend(session, arg);
         case NSIM:
             return new NsimBackend(session, arg);

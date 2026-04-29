@@ -178,7 +178,8 @@ public class ARCTerminalTab extends CLaunchConfigurationTab {
         fLaunchComButton.setSelection(fLaunchTerminal);
 
         gdbServer = cfgReader.getGdbServer();
-        if (gdbServer == ArcGdbServer.JTAG_OPENOCD || gdbServer == ArcGdbServer.JTAG_ASHLING) {
+        if (gdbServer == ArcGdbServer.JTAG_OPENOCD || gdbServer == ArcGdbServer.JTAG_ASHLING_OPELLAXD
+                || gdbServer == ArcGdbServer.JTAG_ASHLING_VITRAXS) {
             if (!comPort.equalsIgnoreCase("")) {
                 // One of the items in the list of COM ports becomes blank
                 // sometimes, if comPort is removed directly instead

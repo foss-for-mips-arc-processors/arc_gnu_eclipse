@@ -100,8 +100,9 @@ public class ConfigurationReader {
       case JTAG_OPENOCD:
         defaultValue = LaunchConfigurationConstants.DEFAULT_OPENOCD_PORT;
         break;
-      case JTAG_ASHLING:
-        defaultValue = LaunchConfigurationConstants.DEFAULT_OPELLAXD_PORT;
+      case JTAG_ASHLING_OPELLAXD:
+      case JTAG_ASHLING_VITRAXS:
+        defaultValue = LaunchConfigurationConstants.DEFAULT_GDBSERVER_PORT;
         break;
       case NSIM:
         defaultValue = LaunchConfigurationConstants.DEFAULT_NSIM_PORT;
@@ -196,16 +197,20 @@ public class ConfigurationReader {
         defaultValue);
   }
 
-  public String getAshlingXmlPath() {
-    return getAttribute(LaunchConfigurationConstants.ATTR_ASHLING_XML_PATH, "");
-  }
-
-  public String getAshlingTDescPath() {
-    return getAttribute(LaunchConfigurationConstants.ATTR_ASHLING_TDESC_PATH, "");
-  }
-
   public String getAshlingJtagFrequency() {
     return getAttribute(LaunchConfigurationConstants.ATTR_JTAG_FREQUENCY, "");
+  }
+
+  public String getAshlingDevice() {
+    return getAttribute(LaunchConfigurationConstants.ATTR_ASHLING_DEVICE, "");
+  }
+
+  public String getAshlingProbeSerialNumber() {
+    return getAttribute(LaunchConfigurationConstants.ATTR_ASHLING_PROBE_SERIAL_NUMBER, "");
+  }
+
+  public String getAshlingGdbServerArgs() {
+    return getAttribute(LaunchConfigurationConstants.ATTR_ASHLING_GDBSERVER_ARGS, "");
   }
 
   public String getCustomGdbServerPath() {

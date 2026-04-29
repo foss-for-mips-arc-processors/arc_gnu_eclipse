@@ -15,6 +15,7 @@ import java.io.File;
 import org.eclipse.cdt.dsf.service.DsfSession;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
+import com.arc.embeddedcdt.common.ArcGdbServer;
 import com.arc.embeddedcdt.dsf.GdbServerBackend;
 import com.arc.embeddedcdt.dsf.utils.ConfigurationReader;
 
@@ -22,9 +23,8 @@ public class AshlingBackend extends GdbServerBackend {
 
     private String commandLineTemplate = "%s"
             + " --jtag-frequency %s"
-            + " --device arc"
-            + " --gdb-port %s"
-            + " --arc-reg-file %s";
+            + " --device %s"
+            + " --gdb-port %s";
 
     public AshlingBackend(DsfSession session, ILaunchConfiguration launchConfiguration) {
         super(session, launchConfiguration);
@@ -36,24 +36,33 @@ public class AshlingBackend extends GdbServerBackend {
         ConfigurationReader cfgReader = new ConfigurationReader(launchConfiguration);
         String ashlingPath = cfgReader.getAshlingPath();
         String gdbServerPort = cfgReader.getGdbServerPort();
-        String ashlingXmlFile = cfgReader.getAshlingXmlPath();
         String jtagFrequency = cfgReader.getAshlingJtagFrequency();
+        String device = cfgReader.getAshlingDevice();
+        if (device == null || device.isEmpty()) {
+            device = "arc";
+        }
+        String probeSerialNumber = cfgReader.getAshlingProbeSerialNumber();
+        String gdbServerArgs = cfgReader.getAshlingGdbServerArgs();
 
         String commandLine = String.format(commandLineTemplate, ashlingPath, jtagFrequency,
-                gdbServerPort, ashlingXmlFile);
+                device, gdbServerPort);
+        if (cfgReader.getGdbServer() == ArcGdbServer.JTAG_ASHLING_OPELLAXD) {
+            commandLine += " --probe-type opella-xd";
+        } else if (cfgReader.getGdbServer() == ArcGdbServer.JTAG_ASHLING_VITRAXS) {
+            commandLine += " --probe-type vitra-xs";
+        }
+        if (probeSerialNumber != null && !probeSerialNumber.isEmpty()) {
+            commandLine += " --instance " + probeSerialNumber;
+        }
+        if (gdbServerArgs != null && !gdbServerArgs.isEmpty()) {
+            commandLine += " " + gdbServerArgs;
+        }
         return commandLine;
     }
 
     @Override
     public String getProcessLabel() {
         return "Ashling GDBserver";
-    }
-
-    @Override
-    public String getCommandToConnect() {
-        ConfigurationReader cfgReader = new ConfigurationReader(launchConfiguration);
-        return "set tdesc filename " + cfgReader.getAshlingTDescPath() + "\n"
-                + super.getCommandToConnect();
     }
 
     @Override

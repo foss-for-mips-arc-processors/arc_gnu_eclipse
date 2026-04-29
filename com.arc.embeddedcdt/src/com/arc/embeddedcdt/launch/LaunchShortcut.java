@@ -93,8 +93,13 @@ public class LaunchShortcut extends CApplicationLaunchShortcut implements ILaunc
                 String gdbserver_port = "";
 
                 switch (gdbServer) {
-                case JTAG_ASHLING:
-                    gdbserver_port = LaunchConfigurationConstants.DEFAULT_OPELLAXD_PORT;
+                case JTAG_ASHLING_OPELLAXD:
+                    gdbserver_port = LaunchConfigurationConstants.DEFAULT_GDBSERVER_PORT;
+                    wc.setAttribute(LaunchConfigurationConstants.ATTR_DEBUGGER_COM_PORT,
+                            FirstlaunchDialog.value[1]);
+                    break;
+                case JTAG_ASHLING_VITRAXS:
+                    gdbserver_port = LaunchConfigurationConstants.DEFAULT_GDBSERVER_PORT;
                     wc.setAttribute(LaunchConfigurationConstants.ATTR_DEBUGGER_COM_PORT,
                             FirstlaunchDialog.value[1]);
                     break;

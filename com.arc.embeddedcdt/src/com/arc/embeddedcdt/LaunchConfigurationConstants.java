@@ -54,9 +54,10 @@ public interface LaunchConfigurationConstants {
     String ATTR_DEBUGGER_GDB_ADDRESS = LAUNCH_ID + ".debugger_gdb_address"; //$NON-NLS-1$
     String ATTR_NSIM_PROP_FILE = LAUNCH_ID + ".nsim_prop_file"; //$NON-NLS-1$
     String ATTR_NSIM_TCF_FILE = LAUNCH_ID + ".nsim_tcf_file"; //$NON-NLS-1$
-    String ATTR_ASHLING_XML_PATH = LAUNCH_ID + ".ashling_xml_path"; //$NON-NLS-1$
-    String ATTR_ASHLING_TDESC_PATH = LAUNCH_ID + ".ashling_tdesc_path"; //$NON-NLS-1$
     String ATTR_JTAG_FREQUENCY = LAUNCH_ID + ".jtag_frequency"; //$NON-NLS-1$
+    String ATTR_ASHLING_DEVICE = LAUNCH_ID + ".ashling_device"; //$NON-NLS-1$
+    String ATTR_ASHLING_PROBE_SERIAL_NUMBER = LAUNCH_ID + ".ashling_probe_serial_number"; //$NON-NLS-1$
+    String ATTR_ASHLING_GDBSERVER_ARGS = LAUNCH_ID + ".ashling_gdbserver_args"; //$NON-NLS-1$
     String ATTR_FTDI_DEVICE = LAUNCH_ID + ".ftdi_device"; //$NON-NLS-1$
     String ATTR_FTDI_CORE = LAUNCH_ID + ".ftdi_core"; //$NON-NLS-1$
 
@@ -70,8 +71,8 @@ public interface LaunchConfigurationConstants {
     static final int CURRENT_FILE_FORMAT_VERSION = 2;
 
     // Default option values
+    static final String DEFAULT_GDBSERVER_PORT = "49105";
     static final String DEFAULT_OPENOCD_PORT = "49105";
-    static final String DEFAULT_OPELLAXD_PORT = "49105";
     static final String DEFAULT_NSIM_PORT = "49105";
     static final String DEFAULT_GDB_HOST = "localhost";
     static final String DEFAULT_OPENOCD_BIN_PATH_LINUX = "/usr/local/bin/openocd";
@@ -84,8 +85,6 @@ public interface LaunchConfigurationConstants {
     // Ashling
     static final String ASHLING_DEFAULT_PATH_WINDOWS = "C:\\AshlingOpellaXDforARC\\ash-arc-gdb-server.exe";
     static final String ASHLING_DEFAULT_PATH_LINUX = "/usr/bin/ash-arc-gdb-server";
-    static final String ASHLING_DEFAULT_XML_FILE = "arc-em-cpu.xml";
-    static final String ASHLING_DEFAULT_TDESC_FILE = "opella-arcem-tdesc.xml";
 
     //Custom Gdbserver
     String ATTR_DEBUGGER_CUSTOM_GDBSERVER_BIN_PATH =  LAUNCH_ID + ".debugger_custom_gdbsever_bin_path";

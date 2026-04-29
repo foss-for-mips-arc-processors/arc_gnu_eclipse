@@ -60,7 +60,8 @@ public class FirstlaunchDialog extends Dialog {
 
         Combo fPrgmArgumentsComboInit = new Combo(shell, SWT.SINGLE | SWT.BORDER);
         fPrgmArgumentsComboInit.add(ArcGdbServer.JTAG_OPENOCD.toString());
-        fPrgmArgumentsComboInit.add(ArcGdbServer.JTAG_ASHLING.toString());
+        fPrgmArgumentsComboInit.add(ArcGdbServer.JTAG_ASHLING_OPELLAXD.toString());
+        fPrgmArgumentsComboInit.add(ArcGdbServer.JTAG_ASHLING_VITRAXS.toString());
         fPrgmArgumentsComboInit.add(ArcGdbServer.NSIM.toString());
 
         fPrgmArgumentsLabelCom = new Label(shell, SWT.NULL);

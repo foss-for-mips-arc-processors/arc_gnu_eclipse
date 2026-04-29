@@ -66,9 +66,10 @@ public class DebuggerGroupContainer extends Observable{
   private Combo externalToolsCombo;
   private ArcGdbServer gdbServer = ArcGdbServer.DEFAULT_GDB_SERVER;
   private Spinner jitThreadSpinner;
-  private FileFieldEditor ashlingXmlPathEditor;
-  private FileFieldEditor ashlingTdescXmlPathEditor;
   private FileFieldEditor ashlingBinaryPathEditor;
+  private Text ashlingDeviceText;
+  private Text ashlingProbeSerialNumberText;
+  private Text ashlingGdbServerArgsText;
   private FileFieldEditor customGdbBinaryPathEditor;
   private FileFieldEditor openOcdBinaryPathEditor;
   private FileFieldEditor openOcdConfigurationPathEditor;
@@ -96,8 +97,9 @@ public class DebuggerGroupContainer extends Observable{
   private String jitThread = "1";
   private String nsimTcfFilesLast = "";
   private String nsimPropertiesFilesLast = "";
-  private String ashlingTdescPath = "";
-  private String ashlingXmlPath = "";
+  private String ashlingDevice = "";
+  private String ashlingProbeSerialNumber = "";
+  private String ashlingGdbServerArgs = "";
   private String externalToolsAshlingPath = "";
   private String customGdbPath;
   private String openOcdBinaryPath;
@@ -185,14 +187,6 @@ public class DebuggerGroupContainer extends Observable{
       gdbServerPortNumberText.setText(portNumber);
   }
 
-  public FileFieldEditor getAshlingTdescXmlPathEditor(){
-    return ashlingTdescXmlPathEditor;
-  }
-
-  public FileFieldEditor getAshlingXmlPathEditor(){
-    return ashlingXmlPathEditor;
-  }
-
   public FileFieldEditor getAshlingBinaryPathEditor(){
     return ashlingBinaryPathEditor;
   }
@@ -235,14 +229,9 @@ public class DebuggerGroupContainer extends Observable{
             : LaunchConfigurationConstants.ASHLING_DEFAULT_PATH_LINUX;
     externalToolsAshlingPath = configurationReader.getOrDefault(defaultAshlingPath, "",
         configurationReader.getAshlingPath());
-    String ashlingXmlFile = new File(defaultAshlingPath).getParentFile().getPath()
-        + java.io.File.separator + LaunchConfigurationConstants.ASHLING_DEFAULT_XML_FILE;
-    ashlingXmlPath = configurationReader.getOrDefault(ashlingXmlFile, "",
-        configurationReader.getAshlingXmlPath());
-    String defaultTDescPath = new File(defaultAshlingPath).getParentFile().getPath()
-        + java.io.File.separator + LaunchConfigurationConstants.ASHLING_DEFAULT_TDESC_FILE;
-    ashlingTdescPath = configurationReader.getOrDefault(defaultTDescPath, "",
-        configurationReader.getAshlingTDescPath());
+    ashlingDevice = configurationReader.getAshlingDevice();
+    ashlingProbeSerialNumber = configurationReader.getAshlingProbeSerialNumber();
+    ashlingGdbServerArgs = configurationReader.getAshlingGdbServerArgs();
     externalToolsNsimPath = configurationReader.getOrDefault(
         getNsimdrvDefaultPath(), "", configurationReader.getNsimPath());
     customGdbPath = configurationReader.getCustomGdbServerPath();
@@ -303,24 +292,78 @@ public class DebuggerGroupContainer extends Observable{
             GridData.FILL_BOTH);
 
     createAshlingBinaryPathEditor(compositeCom);
-    createAshlingXmlPathEditor(compositeCom);
-    createAshlingTdescXmlPathEditor(compositeCom);
+    createAshlingDeviceAndProbeFields(compositeCom);
     createJtagFrequencyCombo(compositeCom);
+    createAshlingGdbServerArgsField(compositeCom);
   }
 
-  private void createAshlingXmlPathEditor(Composite compositeCom){
-    // Path to Ashling XMl file
-    ashlingXmlPathEditor = new FileFieldEditor("ashlingXmlPathEditor", "Ashling XML File", false,
-            StringButtonFieldEditor.VALIDATE_ON_KEY_STROKE, compositeCom);
-    ashlingXmlPathEditor.setStringValue(ashlingXmlPath);
+  private void createAshlingGdbServerArgsField(Composite compositeCom) {
+    Label label = new Label(compositeCom, SWT.LEFT);
+    label.setText("GDBServer arguments:");
+    ashlingGdbServerArgsText = new Text(compositeCom, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
+    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+    gridData.horizontalSpan = 2;
+    gridData.heightHint = 60;
+    ashlingGdbServerArgsText.setLayoutData(gridData);
+    if (!ashlingGdbServerArgs.isEmpty())
+      ashlingGdbServerArgsText.setText(ashlingGdbServerArgs);
+    ashlingGdbServerArgsText.addModifyListener(new ModifyListener() {
+      public void modifyText(ModifyEvent event) {
+        ashlingGdbServerArgs = ashlingGdbServerArgsText.getText();
+        sendNotification(null);
+      }
+    });
+  }
 
-    ashlingXmlPathEditor.setPropertyChangeListener(new IPropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent event) {
-            if (event.getProperty() == "field_editor_value") {
-                ashlingXmlPath = (String) event.getNewValue();
-                sendNotification(null);
-            }
-        }
+  private void createAshlingDeviceAndProbeFields(Composite compositeCom) {
+    // Device label in col1 — aligns with JTAG frequency label
+    Label deviceLabel = new Label(compositeCom, SWT.LEFT);
+    deviceLabel.setText("Device:");
+    GridData deviceLabelGridData = new GridData(GridData.BEGINNING);
+    deviceLabelGridData.widthHint = 110;
+    deviceLabel.setLayoutData(deviceLabelGridData);
+
+    // Sub-composite in col2+col3 holds Device text + Probe label + Probe text in one row
+    Composite rowComposite = new Composite(compositeCom, SWT.NONE);
+    GridLayout rowLayout = new GridLayout(4, false);
+    rowLayout.marginWidth = 0;
+    rowLayout.marginHeight = 0;
+    rowComposite.setLayout(rowLayout);
+    GridData rowData = new GridData(GridData.FILL_HORIZONTAL);
+    rowData.horizontalSpan = 2;
+    rowComposite.setLayoutData(rowData);
+
+    ashlingDeviceText = new Text(rowComposite, SWT.SINGLE | SWT.BORDER | SWT.BEGINNING);
+    ashlingDeviceText.setToolTipText(
+        "Run ash-arc-gdb-server --help to view the list of supported devices.");
+    GridData deviceGridData = new GridData(GridData.BEGINNING);
+    deviceGridData.widthHint = 120;
+    ashlingDeviceText.setLayoutData(deviceGridData);
+    if (!ashlingDevice.isEmpty())
+      ashlingDeviceText.setText(ashlingDevice);
+    ashlingDeviceText.addModifyListener(new ModifyListener() {
+      public void modifyText(ModifyEvent event) {
+        ashlingDevice = ashlingDeviceText.getText();
+        sendNotification(null);
+      }
+    });
+
+    Label probeLabel = new Label(rowComposite, SWT.LEFT);
+    probeLabel.setText("Probe serial number:");
+    GridData probeLabelGridData = new GridData(GridData.BEGINNING);
+    probeLabelGridData.horizontalIndent = 100;
+    probeLabel.setLayoutData(probeLabelGridData);
+    ashlingProbeSerialNumberText = new Text(rowComposite, SWT.SINGLE | SWT.BORDER | SWT.BEGINNING);
+    GridData probeGridData = new GridData(GridData.BEGINNING);
+    probeGridData.widthHint = 115;
+    ashlingProbeSerialNumberText.setLayoutData(probeGridData);
+    if (!ashlingProbeSerialNumber.isEmpty())
+      ashlingProbeSerialNumberText.setText(ashlingProbeSerialNumber);
+    ashlingProbeSerialNumberText.addModifyListener(new ModifyListener() {
+      public void modifyText(ModifyEvent event) {
+        ashlingProbeSerialNumber = ashlingProbeSerialNumberText.getText();
+        sendNotification(null);
+      }
     });
   }
 
@@ -353,13 +396,12 @@ public class DebuggerGroupContainer extends Observable{
             }
           }
           break;
-        case JTAG_ASHLING:
+        case JTAG_ASHLING_OPELLAXD:
+        case JTAG_ASHLING_VITRAXS:
           if (groupComAshling.isDisposed()) {
             return true;
           }
-          if (!isValidFileFieldEditor(ashlingBinaryPathEditor)
-              || !isValidFileFieldEditor(ashlingXmlPathEditor)
-              || !isValidFileFieldEditor(ashlingTdescXmlPathEditor)) {
+          if (!isValidFileFieldEditor(ashlingBinaryPathEditor)) {
             return false;
           }
           break;
@@ -662,11 +704,12 @@ public class DebuggerGroupContainer extends Observable{
     Label label = new Label(subComp, SWT.LEFT);
     label.setText("ARC GDB Server:");
     GridData gd = new GridData();
+    gd.widthHint = 130;
     label.setLayoutData(gd);
 
-    GridData serverTypeComboGridData = new GridData(SWT.BEGINNING, SWT.BEGINNING, true, false);
+    GridData serverTypeComboGridData = new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false);
     serverTypeComboGridData.horizontalSpan = 4;
-    serverTypeComboGridData.minimumWidth = minTextWidth;
+    serverTypeComboGridData.widthHint = minTextWidth;
     externalToolsCombo = new Combo(subComp, SWT.None | SWT.READ_ONLY);
     externalToolsCombo.setLayoutData(serverTypeComboGridData);
     for (ArcGdbServer server: ArcGdbServer.values()) {
@@ -704,8 +747,31 @@ public class DebuggerGroupContainer extends Observable{
                 groupCom.setVisible(true);
                 createTabItemGenericGdbServer = false;
                 createTabItemCustomGdb = false;
-            } else if (gdbServer == ArcGdbServer.JTAG_ASHLING) {
-                setPortNumberText(LaunchConfigurationConstants.DEFAULT_OPELLAXD_PORT);
+            } else if (gdbServer == ArcGdbServer.JTAG_ASHLING_OPELLAXD) {
+                setPortNumberText(LaunchConfigurationConstants.DEFAULT_GDBSERVER_PORT);
+
+                groupNsim.dispose();
+                if (groupGenericGdbServer != null) {
+                    groupGenericGdbServer.dispose();
+                }
+                groupCom.dispose();
+                groupComCustomGdb.dispose();
+                createTabItemNsim = false;
+                createTabItemGenericGdbServer = false;
+                createTabItemCom = false;
+                createTabItemCustomGdb = false;
+
+                if (!createTabItemComAshling) {
+                    if (!groupComAshling.isDisposed())
+                        groupComAshling.dispose();
+
+                    createTabItemComAshling(subComp);
+                }
+
+                groupComAshling.setText(gdbServer.toString());
+                groupComAshling.setVisible(true);
+            } else if (gdbServer == ArcGdbServer.JTAG_ASHLING_VITRAXS) {
+                setPortNumberText(LaunchConfigurationConstants.DEFAULT_GDBSERVER_PORT);
 
                 groupNsim.dispose();
                 if (groupGenericGdbServer != null) {
@@ -827,7 +893,7 @@ public class DebuggerGroupContainer extends Observable{
                 }
 
             } else if (gdbServer == ArcGdbServer.CUSTOM_GDBSERVER) {
-                setPortNumberText(LaunchConfigurationConstants.DEFAULT_OPELLAXD_PORT);
+                setPortNumberText(LaunchConfigurationConstants.DEFAULT_GDBSERVER_PORT);
 
                 groupNsim.dispose();
                 groupCom.dispose();
@@ -849,7 +915,7 @@ public class DebuggerGroupContainer extends Observable{
                     groupComCustomGdb.setVisible(true);
             }
 
-            subComp.layout();
+            subComp.layout(true, true);
             sendNotification(null);
         }
     });
@@ -859,6 +925,7 @@ public class DebuggerGroupContainer extends Observable{
     label.setText(Messages.Port_number_textfield_label);
     GridData gdbPortLabelGridData = new GridData();
     gdbPortLabelGridData.horizontalSpan = 1;
+    gdbPortLabelGridData.widthHint = 130;
     label.setLayoutData(gdbPortLabelGridData);
 
     createGdbServerPortNumberText(subComp, minTextWidth);
@@ -1109,9 +1176,9 @@ public class DebuggerGroupContainer extends Observable{
   public void createGdbServerPortNumberText(Composite subComp, int minTextWidth){
     // GDB port text field
     gdbServerPortNumberText = new Text(subComp, SWT.SINGLE | SWT.BORDER | SWT.BEGINNING);
-    GridData gdbPortTextGridData = new GridData(SWT.BEGINNING, SWT.BEGINNING, true, false);
+    GridData gdbPortTextGridData = new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false);
     gdbPortTextGridData.horizontalSpan = 4;
-    gdbPortTextGridData.minimumWidth = minTextWidth;
+    gdbPortTextGridData.widthHint = minTextWidth + 17;
     gdbServerPortNumberText.setLayoutData(gdbPortTextGridData);
     gdbServerPortNumberText.addModifyListener(new ModifyListener() {
         public void modifyText(ModifyEvent event) {
@@ -1122,7 +1189,7 @@ public class DebuggerGroupContainer extends Observable{
 
   public void createAshlingBinaryPathEditor(Composite compositeCom){
     // Path to Ashling binary
-    ashlingBinaryPathEditor = new FileFieldEditor("ashlingBinaryPath", "Ashling binary path", false,
+    ashlingBinaryPathEditor = new FileFieldEditor("ashlingBinaryPath", "Ashling GDB Server path:", false,
             StringButtonFieldEditor.VALIDATE_ON_KEY_STROKE, compositeCom);
     ashlingBinaryPathEditor.setStringValue(externalToolsAshlingPath);
 
@@ -1172,24 +1239,6 @@ public class DebuggerGroupContainer extends Observable{
     });
   }
 
-  public void createAshlingTdescXmlPathEditor(Composite compositeCom){
-    // Path to ashling target description file
-    ashlingTdescXmlPathEditor = new FileFieldEditor("ashlingTdescXmlPath",
-            "Target description XML file", false,
-            StringButtonFieldEditor.VALIDATE_ON_KEY_STROKE, compositeCom);
-    ashlingTdescXmlPathEditor.setStringValue(ashlingTdescPath);
-
-    ashlingTdescXmlPathEditor.setPropertyChangeListener(new IPropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent event) {
-            if (event.getProperty() == "field_editor_value") {
-                ashlingTdescPath = (String) event.getNewValue();
-                setChanged();
-                notifyObservers();
-            }
-        }
-    });
-  }
-
   public boolean isJtagFrequencyComboDisposed(){
     return jtagFrequencyCombo.isDisposed();
   }
@@ -1226,8 +1275,9 @@ public class DebuggerGroupContainer extends Observable{
     configurationWriter.setOpenOcdConfig(openOcdConfigurationPath);
     configurationWriter.setOpenOcdPath(openOcdBinaryPath);
     configurationWriter.setAshlingPath(externalToolsAshlingPath);
-    configurationWriter.setAshlingXmlPath(ashlingXmlPath);
-    configurationWriter.setAshlingTDescPath(ashlingTdescPath);
+    configurationWriter.setAshlingDevice(ashlingDevice);
+    configurationWriter.setAshlingProbeSerialNumber(ashlingProbeSerialNumber);
+    configurationWriter.setAshlingGdbServerArgs(ashlingGdbServerArgs);
     configurationWriter.setNsimPath(externalToolsNsimPath);
     configurationWriter.setCustomGdbServerPath(customGdbPath);
     if (customGdbCommandLineArguments != null)
@@ -1342,10 +1392,14 @@ public class DebuggerGroupContainer extends Observable{
   public void createJtagFrequencyCombo(Composite composite) {
     Label label = new Label(composite, SWT.LEFT);
     label.setText("JTAG frequency:");
+    GridData jtagLabelGridData = new GridData(GridData.BEGINNING);
+    jtagLabelGridData.widthHint = 110;
+    label.setLayoutData(jtagLabelGridData);
     jtagFrequencyCombo = new Combo(composite, SWT.None);// 1-2 and 1-3
 
     GridData gridDataJtag = new GridData(GridData.BEGINNING);
     gridDataJtag.widthHint = 100;
+    gridDataJtag.horizontalSpan = 2;
     jtagFrequencyCombo.setLayoutData(gridDataJtag);
 
     jtagFrequencyCombo.add("100MHz");
@@ -1494,13 +1548,8 @@ public class DebuggerGroupContainer extends Observable{
         isWindowsOs() ? LaunchConfigurationConstants.ASHLING_DEFAULT_PATH_WINDOWS
             : LaunchConfigurationConstants.ASHLING_DEFAULT_PATH_LINUX;
     configurationWriter.setAshlingPath(defaultAshlingPath);
-
-    String ashlingXmlFile = new File(defaultAshlingPath).getParentFile().getPath()
-        + java.io.File.separator +  LaunchConfigurationConstants.ASHLING_DEFAULT_XML_FILE;
-    configurationWriter.setAshlingXmlPath(ashlingXmlFile);
-
-    String defaultTDescPath = new File(defaultAshlingPath).getParentFile().getPath()
-        + java.io.File.separator + LaunchConfigurationConstants.ASHLING_DEFAULT_TDESC_FILE;
-    configurationWriter.setAshlingTDescPath(defaultTDescPath);
+    configurationWriter.setAshlingDevice("");
+    configurationWriter.setAshlingProbeSerialNumber("");
+    configurationWriter.setAshlingGdbServerArgs("");
   }
 }
