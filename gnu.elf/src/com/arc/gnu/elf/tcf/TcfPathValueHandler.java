@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0
 
-package com.synopsys.arc.gnu.elf.tcf;
+package com.arc.gnu.elf.tcf;
 
 import java.nio.file.Path;
 import java.text.MessageFormat;
@@ -12,8 +12,8 @@ import org.eclipse.cdt.managedbuilder.core.IManagedOptionValueHandler;
 import org.eclipse.cdt.managedbuilder.core.IOption;
 import org.eclipse.cdt.managedbuilder.core.IToolChain;
 
-import com.synopsys.arc.gnu.elf.ArcGnuElfPlugin;
-import com.synopsys.arc.gnu.elf.utility.BuildUtils;
+import com.arc.gnu.elf.ArcGnuElfPlugin;
+import com.arc.gnu.elf.utility.BuildUtils;
 
 public class TcfPathValueHandler implements IManagedOptionValueHandler
 {

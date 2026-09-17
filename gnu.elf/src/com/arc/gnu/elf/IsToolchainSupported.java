@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: EPL-2.0
 
-package com.synopsys.arc.gnu.elf;
+package com.arc.gnu.elf;
 
 import org.eclipse.cdt.managedbuilder.core.IManagedIsToolChainSupported;
 import org.eclipse.cdt.managedbuilder.core.IToolChain;
 import org.osgi.framework.Version;
 
-import com.synopsys.arc.gnu.elf.utility.CommandUtil;
+import com.arc.gnu.elf.utility.CommandUtil;
 
 public final class IsToolchainSupported implements IManagedIsToolChainSupported
 {

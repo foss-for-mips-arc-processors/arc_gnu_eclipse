@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0
 
-package com.synopsys.arc.gnu.elf.utility;
+package com.arc.gnu.elf.utility;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,8 +19,8 @@ import org.eclipse.cdt.managedbuilder.core.IToolChain;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.variables.VariablesPlugin;
 
-import com.synopsys.arc.gnu.elf.ArcGnuElfPlugin;
-import com.synopsys.arc.gnu.elf.tcf.TcfContent;
+import com.arc.gnu.elf.ArcGnuElfPlugin;
+import com.arc.gnu.elf.tcf.TcfContent;
 
 public final class BuildUtils
 {

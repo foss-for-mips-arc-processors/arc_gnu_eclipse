@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0
 
-package com.synopsys.arc.gnu.elf.utility;
+package com.arc.gnu.elf.utility;
 
 import java.net.URISyntaxException;
 import java.nio.file.Files;

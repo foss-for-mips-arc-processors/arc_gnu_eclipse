@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0
 
-package com.synopsys.arc.gnu.elf.version;
+package com.arc.gnu.elf.version;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;

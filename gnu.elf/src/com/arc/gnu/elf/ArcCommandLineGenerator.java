@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0
 
-package com.synopsys.arc.gnu.elf;
+package com.arc.gnu.elf;
 
 import java.nio.file.Path;
 import java.util.Arrays;
@@ -16,9 +16,9 @@ import org.eclipse.cdt.managedbuilder.core.ITool;
 import org.eclipse.cdt.managedbuilder.core.IToolChain;
 import org.eclipse.cdt.managedbuilder.internal.core.ManagedCommandLineGenerator;
 
-import com.synopsys.arc.gnu.elf.tcf.TcfContent;
-import com.synopsys.arc.gnu.elf.tcf.TcfContentException;
-import com.synopsys.arc.gnu.elf.utility.BuildUtils;
+import com.arc.gnu.elf.tcf.TcfContent;
+import com.arc.gnu.elf.tcf.TcfContentException;
+import com.arc.gnu.elf.utility.BuildUtils;
 
 @SuppressWarnings("restriction")
 public final class ArcCommandLineGenerator implements IManagedCommandLineGenerator
