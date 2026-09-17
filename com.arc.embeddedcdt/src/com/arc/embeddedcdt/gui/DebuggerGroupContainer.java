@@ -3,7 +3,7 @@
  * Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/cpl-v10.html
  *
- * Copyright (c) 2016 Synopsys, Inc.
+ * Copyright (c) 2016-2026 MIPS Holding, Inc.
  *******************************************************************************/
 
 package com.arc.embeddedcdt.gui;
@@ -574,45 +574,45 @@ public class DebuggerGroupContainer extends Observable{
 
     switch (ftdiDevice) {
     case EM_SK_v1x:
-        openOcdConfiguration += "snps_em_sk_v1.cfg";
+        openOcdConfiguration += "arc_em_sk_v1.cfg";
         break;
     case EM_SK_v2:
-        openOcdConfiguration += "snps_em_sk.cfg";
+        openOcdConfiguration += "arc_em_sk.cfg";
         break;
     case EM_SK_v21:
-        openOcdConfiguration += "snps_em_sk_v2.1.cfg";
+        openOcdConfiguration += "arc_em_sk_v2.1.cfg";
         break;
     case EM_SK_v22:
-        openOcdConfiguration += "snps_em_sk_v2.2.cfg";
+        openOcdConfiguration += "arc_em_sk_v2.2.cfg";
         break;
     case EM_SK_v23:
-        openOcdConfiguration += "snps_em_sk_v2.3.cfg";
+        openOcdConfiguration += "arc_em_sk_v2.3.cfg";
         break;
     case AXS101:
-        openOcdConfiguration += "snps_axs101.cfg";
+        openOcdConfiguration += "arc_axs101.cfg";
         break;
     case AXS102:
-        openOcdConfiguration += "snps_axs102.cfg";
+        openOcdConfiguration += "arc_axs102.cfg";
         break;
     case AXS103:
         if (ftdiCore == FtdiCore.HS36) {
-            openOcdConfiguration += "snps_axs103_hs36.cfg";
+            openOcdConfiguration += "arc_axs103_hs36.cfg";
         } else if (ftdiCore == FtdiCore.HS38_0 || ftdiCore == FtdiCore.HS38_1) {
-            openOcdConfiguration += "snps_axs103_hs38.cfg";
+            openOcdConfiguration += "arc_axs103_hs38.cfg";
         } else if (ftdiCore == FtdiCore.HS47D) {
-            openOcdConfiguration += "snps_axs103_hs47D.cfg";
+            openOcdConfiguration += "arc_axs103_hs47D.cfg";
         } else {
-            openOcdConfiguration += "snps_axs103_hs48.cfg";
+            openOcdConfiguration += "arc_axs103_hs48.cfg";
         }
         break;
     case HSDK:
-        openOcdConfiguration += "snps_hsdk.cfg";
+        openOcdConfiguration += "arc_hsdk.cfg";
         break;
     case IOTDK:
-        openOcdConfiguration += "snps_iotdk.cfg";
+        openOcdConfiguration += "arc_iotdk.cfg";
         break;
     case EMSDP:
-        openOcdConfiguration += "snps_em_sk_v2.3.cfg";
+        openOcdConfiguration += "arc_em_sk_v2.3.cfg";
         break;
     case CUSTOM:
         break;
@@ -1400,13 +1400,13 @@ public class DebuggerGroupContainer extends Observable{
     if (isWindowsOs()) {
         DEFAULT_OOCD_BIN = getIdeRootDirPath() + "\\bin\\openocd.exe";
         DEFAULT_OOCD_CFG = getIdeRootDirPath()
-                + "\\share\\openocd\\scripts\\board\\snps_em_sk.cfg";
+                + "\\share\\openocd\\scripts\\board\\arc_em_sk.cfg";
     } else {
         String predefinedPath = getIdeBinDir();
         // Checking for OpenOCD binary presence in default path
         if (new File(predefinedPath).isDirectory()) {
             DEFAULT_OOCD_BIN = predefinedPath + "openocd";
-            DEFAULT_OOCD_CFG = getIdeRootDir() + "share/openocd/scripts/board/snps_em_sk.cfg";
+            DEFAULT_OOCD_CFG = getIdeRootDir() + "share/openocd/scripts/board/arc_em_sk.cfg";
         } else {
             DEFAULT_OOCD_BIN = LaunchConfigurationConstants.DEFAULT_OPENOCD_BIN_PATH_LINUX;
             DEFAULT_OOCD_CFG = LaunchConfigurationConstants.DEFAULT_OPENOCD_CFG_PATH_LINUX;

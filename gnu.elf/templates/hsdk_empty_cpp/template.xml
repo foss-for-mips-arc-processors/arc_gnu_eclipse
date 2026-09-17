@@ -3,7 +3,7 @@
   id="hsdk_empty_cpp_project"
   label="%template.label"
   description="%template.description"
-  version="1" revision="2" supplier="Synopsys">
+  version="1" revision="2" supplier="MIPS Holding, Inc.">
 
   <process type="org.eclipse.cdt.managedbuilder.core.NewManagedProject">
     <simple name="name" value="$(projectName)" />

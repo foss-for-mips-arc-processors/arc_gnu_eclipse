@@ -3,7 +3,7 @@
  * Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/cpl-v10.html
  *
- * Copyright (c) 2016 Synopsys, Inc.
+ * Copyright (c) 2016-2026 MIPS Holding, Inc.
  *******************************************************************************/
 
 package com.arc.embeddedcdt.common;

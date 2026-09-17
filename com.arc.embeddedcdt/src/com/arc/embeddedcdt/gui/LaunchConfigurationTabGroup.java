@@ -7,7 +7,7 @@
  * 
  * Contributors:
  *     QNX Software Systems - Initial API and implementation
- *     Synopsys, Inc. - ARC GNU Toolchain support
+ *     MIPS Holding, Inc. - ARC GNU Toolchain support
  *     Jonah Graham (Kichwa Coders) - Adapt to declarative tab generation
  *******************************************************************************/
 
