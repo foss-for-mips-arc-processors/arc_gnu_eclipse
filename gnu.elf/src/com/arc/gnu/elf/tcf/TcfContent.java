@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0
 
-package com.synopsys.arc.gnu.elf.tcf;
+package com.arc.gnu.elf.tcf;
 
 import java.io.IOException;
 import java.nio.file.Files;

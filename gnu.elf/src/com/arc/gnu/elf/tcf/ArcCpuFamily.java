@@ -1,4 +1,4 @@
-package com.synopsys.arc.gnu.elf.tcf;
+package com.arc.gnu.elf.tcf;
 
 import java.util.Arrays;
 import java.util.Optional;

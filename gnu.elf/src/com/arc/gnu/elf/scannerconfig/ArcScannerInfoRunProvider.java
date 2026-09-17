@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0
 
-package com.synopsys.arc.gnu.elf.scannerconfig;
+package com.arc.gnu.elf.scannerconfig;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -18,8 +18,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 
-import com.synopsys.arc.gnu.elf.ArcGnuElfPlugin;
-import com.synopsys.arc.gnu.elf.utility.CommandUtil;
+import com.arc.gnu.elf.ArcGnuElfPlugin;
+import com.arc.gnu.elf.utility.CommandUtil;
 
 @SuppressWarnings("restriction")
 public final class ArcScannerInfoRunProvider extends GCCSpecsRunSIProvider

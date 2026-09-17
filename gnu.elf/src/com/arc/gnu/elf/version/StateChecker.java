@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0
 
-package com.synopsys.arc.gnu.elf.version;
+package com.arc.gnu.elf.version;
 
 import java.text.MessageFormat;
 import java.util.WeakHashMap;
@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.ui.statushandlers.StatusManager;
 import org.osgi.service.prefs.BackingStoreException;
 
-import com.synopsys.arc.gnu.elf.ArcGnuElfPlugin;
+import com.arc.gnu.elf.ArcGnuElfPlugin;
 
 /**
  * Class is intended for checking the compiler plug-in state number (it may be different for the

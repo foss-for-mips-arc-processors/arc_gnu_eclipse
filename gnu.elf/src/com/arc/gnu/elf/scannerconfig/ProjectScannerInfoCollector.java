@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0
 
-package com.synopsys.arc.gnu.elf.scannerconfig;
+package com.arc.gnu.elf.scannerconfig;
 
 import org.eclipse.cdt.make.internal.core.scannerconfig2.PerProjectSICollector;
 

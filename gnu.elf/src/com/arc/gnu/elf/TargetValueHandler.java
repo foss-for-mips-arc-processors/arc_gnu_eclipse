@@ -1,4 +1,4 @@
-package com.synopsys.arc.gnu.elf;
+package com.arc.gnu.elf;
 
 import org.eclipse.cdt.managedbuilder.core.IBuildObject;
 import org.eclipse.cdt.managedbuilder.core.IHoldsOptions;
@@ -7,7 +7,7 @@ import org.eclipse.cdt.managedbuilder.core.IOption;
 import org.eclipse.cdt.managedbuilder.core.IToolChain;
 import org.eclipse.cdt.managedbuilder.core.ManagedOptionValueHandler;
 
-import com.synopsys.arc.gnu.elf.utility.BuildUtils;
+import com.arc.gnu.elf.utility.BuildUtils;
 
 public final class TargetValueHandler extends ManagedOptionValueHandler
     implements IManagedOptionValueHandler

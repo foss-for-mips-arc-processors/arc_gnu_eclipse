@@ -3,7 +3,7 @@
 <plugin>
    <!-- SPDX-License-Identifier: EPL-2.0 -->
    <extension
-         id="com.synopsys.arc.gnu.elf.buildProperties"
+         id="com.arc.gnu.elf.buildProperties"
          name="%extension.name"
          point="org.eclipse.cdt.managedbuilder.core.buildProperties">
       <propertyValue
@@ -77,7 +77,7 @@
       </propertyValue>
    </extension>
     <extension
-         id="com.synopsys.arc.gnu.elf.buildDefinitions"
+         id="com.arc.gnu.elf.buildDefinitions"
          name="%extension.buildDefinitions"
          point="org.eclipse.cdt.managedbuilder.core.buildDefinitions">
       <managedBuildRevision
@@ -86,7 +86,7 @@
       <toolChain
             id="arc.gnu.elf.toolchain.base"
             isAbstract="true"
-            isToolChainSupported="com.synopsys.arc.gnu.elf.IsToolchainSupported">
+            isToolChainSupported="com.arc.gnu.elf.IsToolchainSupported">
          <targetPlatform
                binaryParser="org.eclipse.cdt.core.GNU_ELF"
                id="arc.gnu.elf.toolchain.base.targetPlatform"
@@ -108,7 +108,7 @@
                id="arc.gnu.elf.option.target.use_tcf"
                name="%option.target.use_tcf"
                useByScannerDiscovery="false"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -130,7 +130,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.tcf_path"
                name="%option.target.tcf_path"
-               valueHandler="com.synopsys.arc.gnu.elf.tcf.TcfPathValueHandler"
+               valueHandler="com.arc.gnu.elf.tcf.TcfPathValueHandler"
                valueType="string">
             <enablement
                   type="UI_VISIBILITY">
@@ -158,7 +158,7 @@
                defaultValue="false"
                id="arc.gnu.elf.option.target.tcf_map"
                name="%option.target.tcf_map"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -186,7 +186,7 @@
                defaultValue="false"
                id="arc.gnu.elf.option.target.tcf_cinclude"
                name="%option.target.tcf_cinclude"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -213,7 +213,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.cpuem"
                name="%option.target.cpu"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   command="-mcpu=arcem"
@@ -265,7 +265,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.cpuhs"
                name="%option.target.cpu"
-               valueHandlerExtraArgument="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandlerExtraArgument="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   command="-mcpu=archs"
@@ -322,7 +322,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.cpu700"
                name="%option.target.cpu"
-               valueHandlerExtraArgument="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandlerExtraArgument="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   command="-mcpu=arc700"
@@ -342,7 +342,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.cpu600"
                name="%option.target.cpu"
-               valueHandlerExtraArgument="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandlerExtraArgument="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   command="-mcpu=arc600"
@@ -362,7 +362,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.mcmodel"
                name="%option.target.mcmodel"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   command="-mcmodel=small"
@@ -392,7 +392,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.fpuem"
                name="%option.target.fpu"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   id="arc.gnu.elf.option.target.fpuem.none"
@@ -470,7 +470,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.fpuhs"
                name="%option.target.fpu"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   id="arc.gnu.elf.option.target.fpuhs.none"
@@ -544,7 +544,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.fpuhs6x"
                name="%option.target.fpu"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   id="arc.gnu.elf.option.target.fpuhs.none"
@@ -573,7 +573,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.fpx"
                name="%option.target.fpu"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   id="arc.gnu.elf.option.target.fpx.none"
@@ -628,7 +628,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.mpyem"
                name="%option.target.mpy"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   id="arc.gnu.elf.option.target.mpyem.none"
@@ -705,7 +705,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.mpyhs"
                name="%option.target.mpy"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   id="arc.gnu.elf.option.target.mpyhs.none"
@@ -779,7 +779,7 @@
                category="arc.gnu.elf.category.target"
                id="arc.gnu.elf.option.target.mpy600"
                name="%option.target.mpy"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="enumerated">
             <enumeratedOptionValue
                   id="arc.gnu.elf.option.target.mpy600.none"
@@ -809,7 +809,7 @@
                command="-mdiv-rem"
                id="arc.gnu.elf.option.target.divrem"
                name="%option.target.divrem"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -872,7 +872,7 @@
                command="-mcode-density"
                id="arc.gnu.elf.option.target.code_density"
                name="%option.target.code_density"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -918,7 +918,7 @@
                command="-mbarrel-shifter"
                id="arc.gnu.elf.option.target.barrel_shifter"
                name="%option.target.barrel_shifter"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -983,7 +983,7 @@
                command="-mnorm"
                id="arc.gnu.elf.option.target.norm"
                name="%option.target.norm"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -1038,7 +1038,7 @@
                command="-mswap"
                id="arc.gnu.elf.option.target.swap"
                name="%option.target.swap"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -1093,7 +1093,7 @@
                command="-mll64"
                id="arc.gnu.elf.option.target.ll64"
                name="%option.target.ll64"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -1139,7 +1139,7 @@
                command="-m128"
                id="arc.gnu.elf.option.target.m128"
                name="%option.target.m128"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -1154,7 +1154,7 @@
                command="-matomic"
                id="arc.gnu.elf.option.target.atomic"
                name="%option.target.atomic"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -1169,7 +1169,7 @@
                command="-mea"
                id="arc.gnu.elf.option.target.ea"
                name="%option.target.ea"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -1185,7 +1185,7 @@
                id="arc.gnu.elf.option.target.xy"
                name="%option.target.xy"
                tip="%option.target.xy.tip"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -1206,7 +1206,7 @@
                command="-mno-dpfp-lrsr"
                id="arc.gnu.elf.option.target.dpfplrsr"
                name="%option.target.dpfplrsr"
-               valueHandler="com.synopsys.arc.gnu.elf.TargetValueHandler"
+               valueHandler="com.arc.gnu.elf.TargetValueHandler"
                valueType="boolean">
             <enablement
                   type="UI_VISIBILITY">
@@ -1266,7 +1266,7 @@
          </option>
          <tool
                command="arc-elf32-gcc"
-               commandLineGenerator="com.synopsys.arc.gnu.elf.ArcCommandLineGenerator"
+               commandLineGenerator="com.arc.gnu.elf.ArcCommandLineGenerator"
                id="arc.gnu.elf.tool.c.compiler.base"
                isAbstract="true"
                natureFilter="both"
@@ -1475,7 +1475,7 @@
          </tool>
          <tool
                command="arc-elf32-gcc"
-               commandLineGenerator="com.synopsys.arc.gnu.elf.ArcCommandLineGenerator"
+               commandLineGenerator="com.arc.gnu.elf.ArcCommandLineGenerator"
                errorParsers="org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser"
                id="arc.gnu.elf.tool.assembler.base"
                isAbstract="true"
@@ -1504,7 +1504,7 @@
          </tool>
          <tool
                command="arc-elf32-gcc"
-               commandLineGenerator="com.synopsys.arc.gnu.elf.ArcCommandLineGenerator"
+               commandLineGenerator="com.arc.gnu.elf.ArcCommandLineGenerator"
                errorParsers="org.eclipse.cdt.core.GLDErrorParser"
                id="arc.gnu.elf.tool.c.linker.base"
                isAbstract="true"
@@ -3301,24 +3301,24 @@
          name="%extension.scdprofile.c.arc"
          point="org.eclipse.cdt.make.core.ScannerConfigurationDiscoveryProfile">
       <scannerInfoCollector
-            class="com.synopsys.arc.gnu.elf.scannerconfig.ProjectScannerInfoCollector"
+            class="com.arc.gnu.elf.scannerconfig.ProjectScannerInfoCollector"
             scope="project">
       </scannerInfoCollector>
       <buildOutputProvider>
          <open></open>
          <scannerInfoConsoleParser
-               class="com.synopsys.arc.gnu.elf.scannerconfig.ScannerInfoConsoleParser">
+               class="com.arc.gnu.elf.scannerconfig.ScannerInfoConsoleParser">
          </scannerInfoConsoleParser>
       </buildOutputProvider>
       <scannerInfoProvider
             providerId="specsFile">
          <run
                arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}"
-               class="com.synopsys.arc.gnu.elf.scannerconfig.ArcScannerInfoRunProvider"
+               class="com.arc.gnu.elf.scannerconfig.ArcScannerInfoRunProvider"
                command="arc-elf32-gcc">
          </run>
          <scannerInfoConsoleParser
-               class="com.synopsys.arc.gnu.elf.scannerconfig.GccSpecsConsoleParser">
+               class="com.arc.gnu.elf.scannerconfig.GccSpecsConsoleParser">
          </scannerInfoConsoleParser>
       </scannerInfoProvider>
    </extension>

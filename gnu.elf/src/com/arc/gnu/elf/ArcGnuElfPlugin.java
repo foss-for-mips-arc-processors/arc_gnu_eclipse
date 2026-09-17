@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0
 
-package com.synopsys.arc.gnu.elf;
+package com.arc.gnu.elf;
 
 import java.util.Optional;
 
@@ -14,7 +14,7 @@ import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.ui.statushandlers.StatusManager;
 import org.osgi.framework.BundleContext;
 
-import com.synopsys.arc.gnu.elf.version.StateListener;
+import com.arc.gnu.elf.version.StateListener;
 
 public final class ArcGnuElfPlugin extends Plugin
 {
