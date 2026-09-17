@@ -317,7 +317,7 @@
 # RunARCsyn --- Synthesize design using ARCsyn
 -run_arcsyn false
 
-# RunSEIF --- Run Synopsys Embedit Integrator Flow to generate configured memory instances
+# RunSEIF --- Run Embedit Integrator Flow to generate configured memory instances
 -run_seif false
 
 # RunARCrams --- Run ARCrams on the current build, this will stitch in vendor supplied RAM models and update the synthesis and simulation environment to use the models.
@@ -759,7 +759,7 @@
 # Create Interrupt Controller
 -create com.arc.hardware.Interrupt_Controller.1_0 "System.CPUisle.ARCv2EM.Interrupt Controller"
 
-# number_of_interrupts --- This is the total number of interrupts available to the core.  Some interrupts are allocated statically to a specific interrupt line (for example, timer interrupts).  For more information on Interrupt and register-file options, see DesignWare ARCv2 ISA Programmers Reference Manual.
+# number_of_interrupts --- This is the total number of interrupts available to the core.  Some interrupts are allocated statically to a specific interrupt line (for example, timer interrupts).  For more information on Interrupt and register-file options, see ARCv2 ISA Programmers Reference Manual.
 -number_of_interrupts 22
 
 # number_of_levels --- Priority levels in the interrupt controller.

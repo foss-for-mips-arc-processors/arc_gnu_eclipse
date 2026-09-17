@@ -5,7 +5,7 @@
  * http://www.eclipse.org/legal/cpl-v10.html
  * 
  * Contributors:
- *     Synopsys, Inc. - ARC GNU Toolchain support
+ *     MIPS Holding, Inc. - ARC GNU Toolchain support
  *******************************************************************************/
 
 package com.arc.embeddedcdt.dsf.utils;

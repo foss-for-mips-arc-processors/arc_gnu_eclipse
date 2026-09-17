@@ -6,7 +6,7 @@
   description="%template.description"
   version="1"
   revision="2"
-  supplier="Synopsys">
+  supplier="MIPS Holding, Inc.">
 
   <process type="org.eclipse.cdt.managedbuilder.core.NewManagedProject">
     <simple name="name" value="$(projectName)" />

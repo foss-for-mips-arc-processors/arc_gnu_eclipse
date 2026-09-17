@@ -7,7 +7,7 @@
  * 
  * Contributors:
  *     QNX Software Systems - Initial API and implementation
- *     Synopsys, Inc. - ARC GNU Toolchain support
+ *     MIPS Holding, Inc. - ARC GNU Toolchain support
  *******************************************************************************/
 
 package com.arc.embeddedcdt;
@@ -75,7 +75,7 @@ public interface LaunchConfigurationConstants {
     static final String DEFAULT_NSIM_PORT = "49105";
     static final String DEFAULT_GDB_HOST = "localhost";
     static final String DEFAULT_OPENOCD_BIN_PATH_LINUX = "/usr/local/bin/openocd";
-    static final String DEFAULT_OPENOCD_CFG_PATH_LINUX = "/usr/local/share/openocd/scripts/board/snps_em_sk.cfg";
+    static final String DEFAULT_OPENOCD_CFG_PATH_LINUX = "/usr/local/share/openocd/scripts/board/arc_em_sk.cfg";
     static final FtdiDevice DEFAULT_FTDI_DEVICE = FtdiDevice.EM_SK_v2;
     static final FtdiCore DEFAULT_FTDI_CORE = DEFAULT_FTDI_DEVICE.getCores().get(0);
     static final String DEFAULT_FTDI_DEVICE_NAME = DEFAULT_FTDI_DEVICE.name();

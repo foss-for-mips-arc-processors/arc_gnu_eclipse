@@ -3,7 +3,7 @@
  * Public License v1.0 which accompanies this distribution, and is available at http:/*
  * www.eclipse.org/legal/cpl-v10.html
  * 
- * Contributors: Synopsys, Inc. - ARC GNU Toolchain support
+ * Contributors: MIPS Holding, Inc. - ARC GNU Toolchain support
  *******************************************************************************/
 
 package com.arc.embeddedcdt.dsf.utils;
